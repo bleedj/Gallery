@@ -18,6 +18,12 @@
         height: 80px;
         background: #97a9b2;
         overflow: hidden;
+        border: none;
+        // background: none;
+        border-radius: 5px;
+        overflow: hidden;
+        padding: 0;
+        cursor: pointer;
     }
 
     &__Image {

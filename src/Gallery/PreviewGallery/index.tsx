@@ -5,11 +5,13 @@ import { useEffect, useMemo, useRef } from "react";
 interface PreviewGalleryProps extends CommonClassProps {
     activePhotoIndex: number;
     photos: Photo[];
+    setNewPhoto: (id:number) => void;
 }
 export const PreviewGallery: React.FC<PreviewGalleryProps> = ({
     activePhotoIndex,
     photos,
     className,
+    setNewPhoto,
 }) => { 
     if (!photos.length) {
         return null
@@ -24,23 +26,26 @@ export const PreviewGallery: React.FC<PreviewGalleryProps> = ({
     return (
         <div className={cl(style.PreviewGallery, className)}>
             {useMemo(()=>(
-                <ul>
-
-                </ul>
-            ),[])}
             <ul
                 className={style.PreviewGallery__Track}
                 ref={previewContainer}
             >
-                {photos.map((photo) => (
+                {photos.map((photo, id) => (
                     <li
                         key={photo.id}
-                        className={style.PreviewGallery__Preview}
                     >
-                        <img src={photo.preview} alt={photo.description} className={style.PreviewGallery__Image}/>
+                        <button
+                        className={style.PreviewGallery__Preview}
+                        onClick={()=> {
+                            setNewPhoto(id)
+                        }}
+                        >
+                            <img src={photo.preview} alt={photo.description} className={style.PreviewGallery__Image}/>
+                        </button>
                     </li>
                 ))}
             </ul>
+        ), [])}
             <div
                 className={style.PreviewGallery__Cover}
             >

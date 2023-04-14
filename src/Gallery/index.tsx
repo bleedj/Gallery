@@ -1,7 +1,7 @@
 import { Photo } from "./types";
 import style from './index.module.scss';
 import { useState } from "react";
-import { MainPhoto } from "./MainPhoto";
+import { TransitionPhoto } from "./TransitionPhoto";
 import { PreviewGallery } from "./PreviewGallery";
 import { Naviganion } from "./Navigation";
 
@@ -26,11 +26,9 @@ export const Gallery: React.FC<GalleryProps> = ({
      return (
         <div className={style.webGallery}>
             <div className={style.webGallery__Container}>
-                <MainPhoto
-                    prevPhoto={prevPhoto}
-                    activePhoto={activePhoto}
-                    nextPhoto={nextPhoto}
-                    className={style.webGallery__MainPhoto}
+                <TransitionPhoto
+                    photos={photos}
+                    indexActivePhoto={indexActivePhoto}
                 />
                 <Naviganion
                     className={style.webGallery__Navigation}
@@ -48,6 +46,7 @@ export const Gallery: React.FC<GalleryProps> = ({
                 activePhotoIndex={indexActivePhoto}
                 photos={photos}
                 className={style.webGallery__PreviewList}
+                setNewPhoto={setIndexActivePhoto}
             />
         </div>
      );
